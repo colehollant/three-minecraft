@@ -1,15 +1,14 @@
 import './App.css';
 import { useEffect, useState, useRef, useContext, Suspense } from 'react'
-import { Canvas, extend, useFrame, useLoader } from '@react-three/fiber'
+import { Canvas, extend, useLoader } from '@react-three/fiber'
 import { PointerLockControls } from "three/examples/jsm/controls/PointerLockControls";
-import PlayerContextProvider, { PlayerContext } from './contexts/PlayerContext'
+// import PlayerContextProvider, { PlayerContext } from './contexts/PlayerContext'
 import SceneContextProvider, { SceneContext } from './contexts/SceneContext'
 import Controls from './components/controls'
 import { makeNoise3D } from 'fast-simplex-noise'
 import { TextureLoader } from 'three/src/loaders/TextureLoader'
-import fonts from "./assets/fonts"
 import { Text } from "troika-three-text"
-import { gridSize, boxSize, indexesToCheck } from './config'
+import { gridSize, boxSize } from './config'
 
 extend({ PointerLockControls, Text })
 
@@ -43,7 +42,7 @@ function MinecraftScene() {
     <div id="canvas-container">
       <Canvas>
       <Suspense fallback={null}>
-        <PlayerContextProvider>
+        {/* <PlayerContextProvider> */}
       <SceneContextProvider>
         <ambientLight intensity={0.075} />
         <pointLight color={0xc9ae34} position={[centerCoords.x, centerCoords.y, centerCoords.z]} />
@@ -54,7 +53,7 @@ function MinecraftScene() {
         <Boxes />
         <Controls />
         </SceneContextProvider>
-        </PlayerContextProvider>
+        {/* </PlayerContextProvider> */}
         </Suspense>
       </Canvas>
     </div>
@@ -93,7 +92,6 @@ function Boxes() {
   const translate = {
     y: -20
   }
-  const { position } = useContext(PlayerContext)
   const { setObjects } = useContext(SceneContext)
   const ref = useRef({})
   useEffect(() => {
@@ -105,17 +103,17 @@ function Boxes() {
     '/images/grass-bottom.jpeg'
   ])
 
-  const [rotation, setRotation] = useState([0, 0, 90, 0]);
-  const [opts, setOpts] = useState({
-    font: "Philosopher",
-    fontSize: 2,
-    color: "#99ccff",
-    maxWidth: 300,
-    lineHeight: 1,
-    letterSpacing: 0,
-    textAlign: "justify",
-    materialType: "MeshPhongMaterial"
-  });
+  // const [rotation, setRotation] = useState([0, 0, 90, 0]);
+  // const [opts, setOpts] = useState({
+  //   font: "Philosopher",
+  //   fontSize: 2,
+  //   color: "#99ccff",
+  //   maxWidth: 300,
+  //   lineHeight: 1,
+  //   letterSpacing: 0,
+  //   textAlign: "justify",
+  //   materialType: "MeshPhongMaterial"
+  // });
 
   // const [indexes, setIndexes] = useState([])
   // useFrame(() => {
