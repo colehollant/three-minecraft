@@ -2,7 +2,7 @@ import './App.css';
 import { useEffect, useState, useRef, useContext, Suspense } from 'react'
 import { Canvas, extend, useLoader } from '@react-three/fiber'
 import { PointerLockControls } from "three/examples/jsm/controls/PointerLockControls";
-// import PlayerContextProvider, { PlayerContext } from './contexts/PlayerContext'
+import PlayerContextProvider from './contexts/PlayerContext'
 import SceneContextProvider, { SceneContext } from './contexts/SceneContext'
 import Controls from './components/controls'
 import { makeNoise3D } from 'fast-simplex-noise'
@@ -42,7 +42,7 @@ function MinecraftScene() {
     <div id="canvas-container">
       <Canvas>
       <Suspense fallback={null}>
-        {/* <PlayerContextProvider> */}
+        <PlayerContextProvider>
       <SceneContextProvider>
         <ambientLight intensity={0.075} />
         <pointLight color={0xc9ae34} position={[centerCoords.x, centerCoords.y, centerCoords.z]} />
@@ -53,7 +53,7 @@ function MinecraftScene() {
         <Boxes />
         <Controls />
         </SceneContextProvider>
-        {/* </PlayerContextProvider> */}
+        </PlayerContextProvider>
         </Suspense>
       </Canvas>
     </div>
